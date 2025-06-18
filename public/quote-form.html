@@ -2,42 +2,54 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8">
-  <title>詢價表單 - 鉅虹廣告有限公司</title>
-  <link rel="stylesheet" href="./assets/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>詢價表單 | 鉅虹廣告有限公司</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h2>詢價表單</h2>
-  <form id="quoteForm">
-    <label for="name">姓名：</label>
-    <input type="text" id="name" name="name" required>
 
-    <label for="email">電子郵件：</label>
-    <input type="email" id="email" name="email" required>
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">鉅虹廣告有限公司</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="index.html">首頁</a></li>
+          <li><a href="#contact">聯絡我們</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
 
-    <label for="message">詢價內容：</label>
-    <textarea id="message" name="message" rows="5" required></textarea>
+  <main class="container">
+    <h2>詢價表單</h2>
+    <p>請填寫以下資料，我們將儘速與您聯繫</p>
 
-    <button type="submit">送出</button>
-  </form>
+    <form id="quoteForm">
+      <label for="name">姓名 *</label>
+      <input type="text" id="name" name="name" required>
 
-  <script>
-    document.getElementById('quoteForm').addEventListener('submit', async function(e) {
-      e.preventDefault();
-      const formData = new FormData(this);
-      const data = Object.fromEntries(formData);
+      <label for="email">Email *</label>
+      <input type="email" id="email" name="email" required>
 
-      const res = await fetch('/.netlify/functions/form-submit', {
-        method: 'POST',
-        body: JSON.stringify(data),
-        headers: { 'Content-Type': 'application/json' }
-      });
+      <label for="phone">電話</label>
+      <input type="tel" id="phone" name="phone">
 
-      if (res.ok) {
-        window.location.href = 'thanks.html';
-      } else {
-        alert('表單提交失敗，請稍後再試。');
-      }
-    });
-  </script>
+      <label for="message">需求說明 *</label>
+      <textarea id="message" name="message" rows="5" required></textarea>
+
+      <button type="submit" class="btn">送出詢價</button>
+    </form>
+
+    <div id="form-status" style="margin-top: 20px;"></div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 鉅虹廣告有限公司</p>
+    </div>
+  </footer>
+
+  <script src="form-submit.js"></script>
+
 </body>
 </html>

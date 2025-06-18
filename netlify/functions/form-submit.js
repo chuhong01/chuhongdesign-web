@@ -1,36 +1,30 @@
-exports.handler = async function (event, context) {
-  if (event.httpMethod !== 'POST') {
-    return {
-      statusCode: 405,
-      body: JSON.stringify({ message: 'Method Not Allowed' }),
-    };
+// form-submit.js
+
+document.addEventListener('DOMContentLoaded', function () {
+  const form = document.getElementById('contact-form');
+
+  if (form) {
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData,
+        });
+
+        if (response.ok) {
+          // ✅ 成功後導向感謝頁
+          window.location.href = 'thank-you.html';
+        } else {
+          alert('❌ 發送失敗，請稍後再試！');
+        }
+      } catch (error) {
+        console.error('送出錯誤:', error);
+        alert('❌ 發送時發生錯誤，請稍後再試！');
+      }
+    });
   }
-
-  try {
-    const data = JSON.parse(event.body);
-    const { name, email, message } = data;
-
-    // 檢查欄位
-    if (!name || !email || !message) {
-      return {
-        statusCode: 400,
-        body: JSON.stringify({ message: '缺少必要欄位' }),
-      };
-    }
-
-    // TODO: 可在此加入通知 LINE、寄送 Email、儲存資料等動作
-
-    console.log("📨 收到詢價：", { name, email, message });
-
-    return {
-      statusCode: 200,
-      body: JSON.stringify({ message: '詢價成功' }),
-    };
-  } catch (error) {
-    console.error("❌ 發生錯誤：", error);
-    return {
-      statusCode: 500,
-      body: JSON.stringify({ message: '伺服器錯誤' }),
-    };
-  }
-};
+});

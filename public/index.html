@@ -2,38 +2,79 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="鉅虹廣告有限公司官方網站，提供誠信、高效的廣告設計與行銷服務。">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>鉅虹廣告有限公司</title>
-  <link rel="stylesheet" href="./assets/style.css" />
+  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <header>
-    <h1>鉅虹廣告有限公司</h1>
-    <p>細膩俐落，節省時間，給客戶良好體驗</p>
-    <nav>
-      <a href="index.html">首頁</a>
-      <a href="quote-form.html">詢價</a>
-      <a href="./admin/index.html">後台</a>
-    </nav>
+
+  <header class="header">
+    <div class="container">
+      <h1 class="logo">鉅虹廣告有限公司</h1>
+      <nav>
+        <ul class="nav-links">
+          <li><a href="#about">公司誠信</a></li>
+          <li><a href="#contact">聯絡我們</a></li>
+          <li><a href="#news">最新消息</a></li>
+          <li><a href="inquiry.html">詢價</a></li>
+        </ul>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <section>
-      <h2>公司簡介</h2>
-      <p>本公司於2010年成立至今，秉持著細膩俐落的精神來執行任務，為的就是節省更多時間，更輕鬆的交給客戶，給客戶擁有良好的體驗，願您與本公司合作成為良好的關係！</p>
-    </section>
+  <section class="hero">
+    <div class="container">
+      <h2>我們用專業，為您省下時間</h2>
+      <p>成立於2010年，細膩俐落，快速交付，是我們給您的承諾。</p>
+      <a href="inquiry.html" class="btn">立即詢價</a>
+    </div>
+  </section>
 
-    <section>
-      <h2>近況分享</h2>
-      <div id="news-container">
-        <p>目前無新消息。</p>
+  <section id="about" class="about">
+    <div class="container">
+      <h2>關於我們</h2>
+      <p>
+        鉅虹廣告有限公司成立於2010年，秉持著細膩俐落的精神來執行任務，為的就是節省更多時間，更輕鬆的交給客戶，給客戶擁有良好的體驗，願您與本公司合作成為良好的關係！
+      </p>
+    </div>
+  </section>
+
+  <section id="news" class="news">
+    <div class="container">
+      <h2>最新消息</h2>
+      <div id="news-list">
+        <p>載入中...</p>
       </div>
-    </section>
-  </main>
+    </div>
+  </section>
 
-  <footer>
-    <p>聯絡我們：<a href="mailto:bobo880116@gmail.com">bobo880116@gmail.com</a></p>
+  <section id="contact" class="contact">
+    <div class="container">
+      <h2>聯絡我們</h2>
+      <p>公司電話、專人服務電洽、LINE 客服</p>
+      <p>Email: <a href="mailto:chu.hong.0960707366@gmail.com">chu.hong.0960707366@gmail.com</a></p>
+      <p><a href="https://lin.ee/your-line-link" target="_blank">加入 LINE 好友</a></p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2025 鉅虹廣告有限公司 | All Rights Reserved.</p>
+    </div>
   </footer>
+
+  <script>
+    // 假資料模擬最新消息（可串接後台）
+    const newsList = document.getElementById("news-list");
+    const news = [
+      { date: "2025/06/01", content: "網站正式上線，歡迎使用！" },
+      { date: "2025/06/15", content: "新增詢價表單與後台管理功能。" },
+    ];
+
+    newsList.innerHTML = news.map(item =>
+      `<div><strong>${item.date}</strong> - ${item.content}</div>`
+    ).join('');
+  </script>
 </body>
 </html>
+
